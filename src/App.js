@@ -20,11 +20,11 @@ class App extends Component {
                 path='/register'
                 component={RegisterPage}
               />
-              {/* <Route
+              <Route
                 path='/adopt'
                 component={AdoptPage}
               />
-              <Route
+              {/* <Route
                 component={NotFoundPage}
               /> */}
           {/* </Switch> */}
