@@ -139,7 +139,7 @@ export default class HomePage extends React.Component {
             adopt one or the other, or both, and bring them back to their dream
             home.
           </p>
-          <Link to='/adopt' className="home-start-button">
+          <Link to='/register' className="home-start-button">
             Start
           </Link>
         </div>

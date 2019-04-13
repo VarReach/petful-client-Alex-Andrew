@@ -1,10 +1,10 @@
 import React from "react";
-import config from '../../config';
+import config from "../../config";
 
 export default class HomePage extends React.Component {
   state = {
     error: null,
-    dog: {},
+    dog: {}
   };
 
   componentDidMount() {
@@ -17,36 +17,43 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        if(data.message && data.message === 'No dogs left in queue'){
-            this.setState({ error: data.message });
-            return;
+        if (data.message) {
+          this.setState({ error: data.message });
+          return;
         }
         this.setState({ dog: data });
       })
       .catch(error => {
         this.setState({ error: error.message });
       });
-  }
+  };
 
   adoptDog = () => {
     const user_name = window.sessionStorage.getItem(config.USER_KEY);
     return fetch(`${config.API_ENDPOINT}/dog`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json"
       },
       body: JSON.stringify({ user_name, name: this.state.dog.name })
     })
-    .then(this.getDog)
-    .catch(error => {
-      this.setState({ error: error.message });
-    });
-  }
+      .then(this.getDog)
+      .catch(error => {
+        this.setState({ error: error.message });
+      });
+  };
 
   render() {
     const dog = this.state.dog;
+    if (this.state.error) {
+      return (
+        <div className="dogs-slide-container">
+          <h2>{this.state.error}</h2>
+        </div>
+      );
+    }
     return (
-      <div className='dogs-slide-container'>
+      <div className="dogs-slide-container">
         <img
           className="dogs-slide-picture"
           src={dog.imageUrl}

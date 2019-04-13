@@ -17,7 +17,7 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        if(data.message && data.message === 'No cats left in queue'){
+        if(data.message){
             this.setState({ error: data.message });
             return;
         }
@@ -31,9 +31,9 @@ export default class HomePage extends React.Component {
   adoptCat = () => {
     const user_name = window.sessionStorage.getItem(config.USER_KEY);
     return fetch(`${config.API_ENDPOINT}/cat`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json"
       },
       body: JSON.stringify({ user_name, name: this.state.cat.name })
     })
@@ -41,10 +41,17 @@ export default class HomePage extends React.Component {
       .catch(error => {
         this.setState({ error: error.message });
       });
-  }
+  };
 
   render() {
     const cat = this.state.cat;
+    if (this.state.error) {
+      return (
+        <div className="cats-slide-container">
+          <h2>{this.state.error}</h2>
+        </div>
+      );
+    }
     return (
       <div className='cats-slide-container'>
         <img
