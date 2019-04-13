@@ -2,6 +2,8 @@ import React from 'react';
 import UsersApiService from '../services/users-api-service';
 import Loading from '../components/Loading/Loading';
 import config from '../config';
+import AdoptCat from '../components/AdoptCat/AdoptCat';
+import AdoptDog from '../components/AdoptDog/AdoptDog';
 
 export default class AdoptPage extends React.Component{
   constructor(props) {
@@ -43,13 +45,27 @@ export default class AdoptPage extends React.Component{
       });
   }
 
+  removeSelfFromQueue = (e) => {
+    e.preventDefault();
+    fetch(`${config.API_ENDPOINT}/users`, {
+      method: 'DELETE',
+    })
+      .then(resp => {
+        this.props.history.push('/');
+      });
+  }
+
   render(){
     if (this.state.queuePos > 1) {
       return <Loading queuePos={this.state.queuePos}/>
     } else {
       return(
         <div>
-          
+          <AdoptCat/>
+          <AdoptDog/>
+          <button onClick={this.removeSelfFromQueue}>
+            Finished!
+          </button>
         </div>
       );
     }
