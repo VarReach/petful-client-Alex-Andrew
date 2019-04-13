@@ -1,4 +1,5 @@
 import React from "react";
+import "./HomePage.css";
 
 export default class HomePage extends React.Component {
   state = {
@@ -6,7 +7,7 @@ export default class HomePage extends React.Component {
     adoptedDogs: [],
     currentCat: 0,
     currentDog: 0,
-    error: ''
+    error: ""
   };
   componentDidMount() {
     const URL = "http://localhost:8080/api";
@@ -15,10 +16,10 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-          if(data.message && data.message === 'No cats left in queue'){
-              this.setState({ error: data.message })
-              return
-          }
+        if (data.message && data.message === "No cats left in queue") {
+          this.setState({ error: data.message });
+          return;
+        }
         this.setState({ adoptedCats: data });
       })
       .then(
@@ -27,32 +28,32 @@ export default class HomePage extends React.Component {
         })
           .then(res => res.json())
           .then(data => {
-            if(data.message && data.message === 'No dogs left in queue'){
-                this.setState({ error: data.message })
-                return
+            if (data.message && data.message === "No dogs left in queue") {
+              this.setState({ error: data.message });
+              return;
             }
-              this.setState({ adoptedDogs: data });
-            })
+            this.setState({ adoptedDogs: data });
+          })
       );
   }
-//   createDogsArray = queue => {
-//     let array = [];
-//     let current = queue.first;
-//     while (current !== null) {
-//       array.push(current.value);
-//       current = current.next;
-//     }
-//     return array;
-//   };
-//   createCatsArray = queue => {
-//     let array = [];
-//     let current = queue.first;
-//     while (current !== null) {
-//       array.push(current.value);
-//       current = current.next;
-//     }
-//     return array;
-//   };
+  //   createDogsArray = queue => {
+  //     let array = [];
+  //     let current = queue.first;
+  //     while (current !== null) {
+  //       array.push(current.value);
+  //       current = current.next;
+  //     }
+  //     return array;
+  //   };
+  //   createCatsArray = queue => {
+  //     let array = [];
+  //     let current = queue.first;
+  //     while (current !== null) {
+  //       array.push(current.value);
+  //       current = current.next;
+  //     }
+  //     return array;
+  //   };
   generateCatSlide = () => {
     const catDisplayed = this.state.adoptedCats[this.state.currentCat];
     if (catDisplayed) {
@@ -65,7 +66,13 @@ export default class HomePage extends React.Component {
           />
           <h3 className="cats-slide-name">{catDisplayed.name}</h3>
           <p className="cats-slide-story">{catDisplayed.story}</p>
-          {(catDisplayed.adoptedBy) ? <p className="cats-slide-adopted">Adopted by: {catDisplayed.adoptedBy}</p> : ''}
+          {catDisplayed.adoptedBy ? (
+            <p className="cats-slide-adopted">
+              Adopted by: {catDisplayed.adoptedBy}
+            </p>
+          ) : (
+            ""
+          )}
           {/* <p className="cats-slide-adoptedBy">{catDisplayed.adoptedBy}</p> */}
           <button type="button" onClick={this.nextCat}>
             Next
@@ -86,7 +93,13 @@ export default class HomePage extends React.Component {
           />
           <h3 className="dogs-slide-name">{dogDisplayed.name}</h3>
           <p className="dogs-slide-story">{dogDisplayed.story}</p>
-          {(dogDisplayed.adoptedBy) ? <p className="dogs-slide-adopted">Adopted by: {dogDisplayed.adoptedBy}</p> : ''}
+          {dogDisplayed.adoptedBy ? (
+            <p className="dogs-slide-adopted">
+              Adopted by: {dogDisplayed.adoptedBy}
+            </p>
+          ) : (
+            ""
+          )}
           <button type="button" onClick={this.nextDog}>
             Next
           </button>
@@ -110,23 +123,26 @@ export default class HomePage extends React.Component {
   };
   render() {
     return (
-      <div>
-        <h2>Welcome to Adopt a Pet-o-Rama 5001!</h2>
-        <div>{this.generateCatSlide()}</div>
-        
-        <div>
-         
+      <section>
+        <h1 className="home-title">Welcome to Adopt a Pet-o-Rama 5001!</h1>
+        <div className="slide-container">
+          <div>{this.generateCatSlide()}</div>
+          <div>{this.generateDogSlide()}</div>
         </div>
-        <div>{this.generateDogSlide()}</div>
-        <p>
-          To start, click on the Adopt button. Enter your contact details to be
-          entered into our queue. Once you have reached the front of the line,
-          you will be presented with an amazing and fluffy (most likely) cat and
-          dog that are both ready to be adopted! You can choose to adopt one or
-          the other, or both, and bring them back to their dream home.
-        </p>
-        <button type="button">Start</button>
-      </div>
+        <div className='description-section'>
+          <p className="home-description">
+            To start, click on the Adopt button. Enter your contact details to
+            be entered into our queue. Once you have reached the front of the
+            line, you will be presented with an amazing and fluffy (most likely)
+            cat and dog that are both ready to be adopted! You can choose to
+            adopt one or the other, or both, and bring them back to their dream
+            home.
+          </p>
+          <button type="button" className="home-start-button">
+            Start
+          </button>
+        </div>
+      </section>
     );
   }
 }
