@@ -1,5 +1,6 @@
 import React from 'react';
 import UsersApiService from '../services/users-api-service';
+import Loading from '../components/Loading/Loading';
 import config from '../config';
 
 export default class AdoptPage extends React.Component{
@@ -18,10 +19,6 @@ export default class AdoptPage extends React.Component{
     } else {
       this.getQueueUpdate(user_name);
     }
-  }
-
-  componentWillUnmount() {
-    UsersApiService.clearTimeout();
   }
 
   getQueueUpdate(user_name) {
@@ -47,10 +44,14 @@ export default class AdoptPage extends React.Component{
   }
 
   render(){
-    return(
-      <div>
-
-      </div>
-    );
+    if (this.state.queuePos > 1) {
+      return <Loading queuePos={this.state.queuePos}/>
+    } else {
+      return(
+        <div>
+          
+        </div>
+      );
+    }
   }
 }
