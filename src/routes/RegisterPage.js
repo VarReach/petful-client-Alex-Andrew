@@ -56,7 +56,7 @@ export default class AdoptPage extends React.Component{
 
     render(){
         return(
-            <div>
+            <div className="form-container">
               <form className="register__form" onSubmit={this.handleOnSubmit}>
                 {this.state.error && <p className="register__error">{this.state.error}</p>}
                 <label htmlFor="register__first-name">Enter your first name:</label>
