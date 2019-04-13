@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+.home-title{
+    text-align: center;
+}
+.slide-container{
+    display: flex;
+    width: 75%;
+    margin: auto;
+}
+
+img{
+    width: 500px;
+    height: 100%;
+}
+
+.dogs-slide-container, .cats-slide-container{
+    text-align: center;
+    padding: 20px;
+}
+
+.home-description{
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    font-size: 20px;
+}
+.description-section{
+    text-align: center;
+}
+.home-start-button{
+    text-align: center;
+}
