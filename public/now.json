@@ -1,7 +1,7 @@
 {
     "version": 2,
     "name": "Petful",
-    "alias": "AB-AR-Petful",
+    "alias": "andrew-alex-petful",
     "routes": [
       {
         "src": "^/static/(.*)",
