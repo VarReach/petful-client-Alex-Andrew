@@ -29,8 +29,13 @@ export default class HomePage extends React.Component {
   }
 
   adoptCat = () => {
+    const user_name = window.sessionStorage.getItem(config.USER_KEY);
     return fetch(`${config.API_ENDPOINT}/cat`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ user_name, name: this.state.cat.name })
     })
       .then(this.getCat)
       .catch(error => {
@@ -41,7 +46,7 @@ export default class HomePage extends React.Component {
   render() {
     const cat = this.state.cat;
     return (
-      <div>
+      <div className='cats-slide-container'>
         <img
           className="cats-slide-picture"
           src={cat.imageUrl}

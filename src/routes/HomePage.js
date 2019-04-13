@@ -1,5 +1,7 @@
 import React from "react";
 import "./HomePage.css";
+import config from '../config';
+import { Link } from 'react-router-dom';
 
 export default class HomePage extends React.Component {
   state = {
@@ -10,8 +12,7 @@ export default class HomePage extends React.Component {
     error: ""
   };
   componentDidMount() {
-    const URL = "http://localhost:8080/api";
-    return fetch(`${URL}/cat/all`, {
+    return fetch(`${config.API_ENDPOINT}/cat/all`, {
       method: "GET"
     })
       .then(res => res.json())
@@ -23,7 +24,7 @@ export default class HomePage extends React.Component {
         this.setState({ adoptedCats: data });
       })
       .then(
-        fetch(`${URL}/dog/all`, {
+        fetch(`${config.API_ENDPOINT}/dog/all`, {
           method: "GET"
         })
           .then(res => res.json())
@@ -88,7 +89,7 @@ export default class HomePage extends React.Component {
         <div className="dogs-slide-container">
           <img
             className="dogs-slide-picture"
-            src={dogDisplayed.imageURL}
+            src={dogDisplayed.imageUrl}
             alt={dogDisplayed.imageDescription}
           />
           <h3 className="dogs-slide-name">{dogDisplayed.name}</h3>
@@ -126,8 +127,8 @@ export default class HomePage extends React.Component {
       <section>
         <h1 className="home-title">Welcome to Adopt a Pet-o-Rama 5001!</h1>
         <div className="slide-container">
-          <div>{this.generateCatSlide()}</div>
-          <div>{this.generateDogSlide()}</div>
+          {this.generateCatSlide()}
+          {this.generateDogSlide()}
         </div>
         <div className='description-section'>
           <p className="home-description">
@@ -138,9 +139,9 @@ export default class HomePage extends React.Component {
             adopt one or the other, or both, and bring them back to their dream
             home.
           </p>
-          <button type="button" className="home-start-button">
+          <Link to='/adopt' className="home-start-button">
             Start
-          </button>
+          </Link>
         </div>
       </section>
     );

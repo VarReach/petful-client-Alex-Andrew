@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 .home-title{
     text-align: center;
@@ -11,13 +12,17 @@
 }
 
 img{
-    width: 500px;
-    height: 100%;
+    width: 100%;
+    padding: 1px;
+    border: 1px solid darkgray;
+    box-shadow: 0 5px 2px #c2c2c250;
 }
 
 .dogs-slide-container, .cats-slide-container{
+    max-width: 500px;
     text-align: center;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .home-description{
@@ -31,4 +36,18 @@ img{
 }
 .home-start-button{
     text-align: center;
+}
+.adopt-button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .slide-container{
+        display: block;
+    }
+    .dogs-slide-container, .cats-slide-container{
+       display: block;
+    }
 }

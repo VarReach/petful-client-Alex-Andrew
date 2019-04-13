@@ -29,8 +29,13 @@ export default class HomePage extends React.Component {
   }
 
   adoptDog = () => {
+    const user_name = window.sessionStorage.getItem(config.USER_KEY);
     return fetch(`${config.API_ENDPOINT}/dog`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ user_name, name: this.state.dog.name })
     })
     .then(this.getDog)
     .catch(error => {
@@ -41,7 +46,7 @@ export default class HomePage extends React.Component {
   render() {
     const dog = this.state.dog;
     return (
-      <div>
+      <div className='dogs-slide-container'>
         <img
           className="dogs-slide-picture"
           src={dog.imageUrl}

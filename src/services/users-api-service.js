@@ -5,7 +5,6 @@ let _THIRTY_SECOND_IN_MS = 30 * 1000;
 
 const UsersApiService = {
   postUserToQueue(user) {
-    console.log(user);
     const options = {
       method: 'POST',
       headers: {
