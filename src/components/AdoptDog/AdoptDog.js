@@ -1,7 +1,7 @@
 import React from "react";
 import config from "../../config";
 
-export default class HomePage extends React.Component {
+export default class AdoptDog extends React.Component {
   state = {
     error: null,
     dog: {}

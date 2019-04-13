@@ -37,24 +37,7 @@ export default class HomePage extends React.Component {
           })
       );
   }
-  //   createDogsArray = queue => {
-  //     let array = [];
-  //     let current = queue.first;
-  //     while (current !== null) {
-  //       array.push(current.value);
-  //       current = current.next;
-  //     }
-  //     return array;
-  //   };
-  //   createCatsArray = queue => {
-  //     let array = [];
-  //     let current = queue.first;
-  //     while (current !== null) {
-  //       array.push(current.value);
-  //       current = current.next;
-  //     }
-  //     return array;
-  //   };
+
   generateCatSlide = () => {
     const catDisplayed = this.state.adoptedCats[this.state.currentCat];
     if (catDisplayed) {

@@ -1,10 +1,10 @@
 import React from "react";
-import config from '../../config';
+import config from "../../config";
 
-export default class HomePage extends React.Component {
+export default class AdoptCat extends React.Component {
   state = {
     error: null,
-    cat: {},
+    cat: {}
   };
 
   componentDidMount() {
@@ -17,16 +17,16 @@ export default class HomePage extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        if(data.message){
-            this.setState({ error: data.message });
-            return;
+        if (data.message) {
+          this.setState({ error: data.message });
+          return;
         }
         this.setState({ cat: data });
       })
       .catch(error => {
         this.setState({ error: error.message });
       });
-  }
+  };
 
   adoptCat = () => {
     const user_name = window.sessionStorage.getItem(config.USER_KEY);
@@ -53,7 +53,7 @@ export default class HomePage extends React.Component {
       );
     }
     return (
-      <div className='cats-slide-container'>
+      <div className="cats-slide-container">
         <img
           className="cats-slide-picture"
           src={cat.imageUrl}

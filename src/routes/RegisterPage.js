@@ -1,7 +1,7 @@
 import React from 'react';
 import UserApiService from '../services/users-api-service';
 
-export default class AdoptPage extends React.Component{
+export default class RegisterPage extends React.Component{
     constructor(props) {
       super(props);
       this.state = { 
